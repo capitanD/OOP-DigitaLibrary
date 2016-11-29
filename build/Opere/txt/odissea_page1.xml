@@ -1,0 +1,15 @@
+<TEI version="5.0" xmlns="http://www.tei-c.org/ns/1.0">
+ <teiHeader>
+  <fileDesc>
+   <titleStmt>
+    <title>Odissea</title>
+   </titleStmt>
+  </fileDesc>
+ </teiHeader>
+ <text>
+  <body>
+   <p>AUTORE: Omero</p>
+   <p>TEI validate Ok.</p>
+  </body>
+ </text>
+</TEI>
