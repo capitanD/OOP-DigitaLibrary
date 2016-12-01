@@ -72,6 +72,7 @@ import DigitaLibrary.Model.Opera;
  * - loadImage()	-> Scelta del file immagine da caricare.
  * - uploadText()	-> Salvataggio e caricamento di una trascrizione.
  * - scaleImage(int, int, BufferedImage)	-> Adattamento dell'immagine al frame.
+ * - setImage(BufferedImage)	-> Imposta l'immagine.
  * - zoomIn()/Out()	-> Zoom per poter effettuare un controllo più accurato.
  */
 
@@ -679,7 +680,7 @@ public class GestionePagina extends AbstractAction implements Gestione  {
 			
 	
 			for(int i = 0; i<data.getPageList().size(); i++){
-				//lista degli id di tutte le pagine
+				//lista degli ID di tutte le pagine
 				Page next = data.getPageList().get(i);
 				Date now = new Date();
 				SimpleDateFormat ft =  new SimpleDateFormat ("dd-MM-yy");
@@ -707,6 +708,9 @@ public class GestionePagina extends AbstractAction implements Gestione  {
 		}			
 	}
 	
+	/*  SETIMAGE(BufferedImage)
+	 * 	Imposta l'immagine.
+	 */
 	public void setImage(BufferedImage i){
 		this.image = i;
 	}

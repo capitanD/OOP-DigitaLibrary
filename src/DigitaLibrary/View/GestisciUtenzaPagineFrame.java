@@ -152,7 +152,7 @@ public class GestisciUtenzaPagineFrame extends JFrame {
 			/* -- Report -- */
 			JLabel lbReport = new JLabel("Last report");
 			lbReport.setFont(new Font("Tahoma", Font.BOLD, 11));
-			lbReport.setBounds(135, 98, 50, 14);
+			lbReport.setBounds(125, 98, 80, 14);
 			contentPane.add(lbReport);
 			
 			JLabel labelr = new JLabel("-");

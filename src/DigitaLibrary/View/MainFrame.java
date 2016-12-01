@@ -32,7 +32,7 @@ import java.awt.event.ActionListener;
 import java.util.Iterator;
 
 
-/*	
+/*	MAINFRAME
  *	Frame principale in cui parte del contenuto verrà modificato 
  * 	in base al ruolo dell'utente.
  * 	Admin: ruolo 6
@@ -63,7 +63,8 @@ public class MainFrame extends JFrame {
 			Iterator<Opera> itr = data.getOperaList().iterator();
 			while(itr.hasNext()){
 				Opera next = itr.next();
-				if(next.getStatus())listaOpera.addElement(next.getTitle());
+				if(next.getStatus())
+					listaOpera.addElement(next.getTitle());
 			}
 		}else{
 			Iterator<Opera> itr = data.getOperaList().iterator();
@@ -217,30 +218,11 @@ public class MainFrame extends JFrame {
 		contentPane.add(separatore);
 		
 		
-		/*  -- STATUS OPERA --  */
-		if(role > 1){
-			JLabel lblStatus = new JLabel("Status:");
-			lblStatus.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			lblStatus.setBounds(260, 132, 46, 14);
-			contentPane.add(lblStatus);
-			
-			JLabel status = new JLabel("-");
-			status.setBounds(313, 132, 134, 14);
-			status.setFont(new Font("Tahoma", Font.BOLD, 11));
-			contentPane.add(status);
-			GestioneMouse act = new GestioneMouse( this.data, "MainFrame", list, autore, pagine, btnVisualizza,status);
-			list.addMouseListener(act);
-		}
-		else{
-		    GestioneMouse act = new GestioneMouse( this.data, "MainFrame", list, autore, pagine, btnVisualizza,null);
-		    list.addMouseListener(act);
-		}
-		
-		
 		
 		/*  CONTENT DIVISION
 		 *  Divisione del contenuto in base al ruolo dell'utente.  
 		 */
+		
 		
 		/*  -- Utente Base -- */
 		if(role == 0){
@@ -266,7 +248,7 @@ public class MainFrame extends JFrame {
 					+ " Lei è un utente base e, in quanto tale, "
 					+ "non ha diritto a visualizzare il contenuto delle opere "
 					+ "già presenti sul nostro sistema. "
-					+ "Può solo visualizzare l'elenco delle opere.</html>");
+					+ "Può solo visualizzare l'elenco delle opere pubblicate.</html>");
 			lbDescUserBase.setFont(new Font("Tahoma", Font.PLAIN, 10));
 			lbDescUserBase.setBounds(450, 128, 175, 85);
 			contentPane.add(lbDescUserBase);
@@ -281,6 +263,10 @@ public class MainFrame extends JFrame {
 			username.setBounds(533, 220, 134, 14);
 			username.setFont(new Font("Tahoma", Font.BOLD, 11));
 			contentPane.add(username);
+			
+			GestioneMouse act_base = new GestioneMouse( this.data, "MainFrame", list, autore, pagine, btnVisualizza, null);
+			list.addMouseListener(act_base);
+
 		}
 		
 		
@@ -307,7 +293,7 @@ public class MainFrame extends JFrame {
 			JLabel lbDescAdvance = new JLabel("<html>Pannello operazioni Utente. "
 					+ "  Siamo spiacenti ma un utente con il suo ruolo "
 					+ "non è abilitato ad eseguire alcuna operazione sul "
-					+ "nostro sistema, ma può visualizzare le opere presenti.</html>");
+					+ "sistema, può visualizzare le opere pubbliche.</html>");
 			lbDescAdvance.setFont(new Font("Tahoma", Font.PLAIN, 10));
 			lbDescAdvance.setBounds(450, 128, 165, 65);
 			contentPane.add(lbDescAdvance);
@@ -333,6 +319,26 @@ public class MainFrame extends JFrame {
 			UserRole.setBounds(533, 223, 134, 14);
 			UserRole.setFont(new Font("Tahoma", Font.BOLD, 11));
 			contentPane.add(UserRole);
+			
+			GestioneMouse act_advanced = new GestioneMouse( this.data, "MainFrame", list, autore, pagine, btnVisualizza, null);
+			list.addMouseListener(act_advanced);
+		}
+		
+		
+		/*  -- STATUS OPERA --  */
+		if(role > 1){
+			JLabel lblStatus = new JLabel("Status:");
+			lblStatus.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			lblStatus.setBounds(260, 132, 46, 14);
+			contentPane.add(lblStatus);
+			
+			JLabel status = new JLabel("-");
+			status.setBounds(313, 132, 134, 14);
+			status.setFont(new Font("Tahoma", Font.BOLD, 11));
+			contentPane.add(status);
+			
+			GestioneMouse act = new GestioneMouse( this.data, "MainFrame", list, autore, pagine, btnVisualizza,status);
+			list.addMouseListener(act);
 		}
 		
 		
@@ -347,8 +353,7 @@ public class MainFrame extends JFrame {
 			}else{
 				actioncmd = "Trascrivi";
 				ruoloUtente = "Trascrittore";
-			}
-				
+			}				
 			
 			/*  Operazioni concesse all'utente  */
 			JLabel lbOperation = new JLabel("Operazioni Utente");
@@ -394,6 +399,7 @@ public class MainFrame extends JFrame {
 			btnAcquisisci.addActionListener(act3);
 			contentPane.add(btnAcquisisci);
 		}
+		
 		
 		/*	-- Revisori --  */
 		if(role == 3 || role == 5){
