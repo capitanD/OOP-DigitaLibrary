@@ -58,13 +58,17 @@ public class MainFrame extends JFrame {
 		
 		int role = user.getRole();
 		this.data = data;
-		DefaultListModel<String> listaOpera=new DefaultListModel<String>();
+		int count = 0;
+		DefaultListModel<String> listaOpera = new DefaultListModel<String>();
+		
 		if(role == 0 || role == 1){
 			Iterator<Opera> itr = data.getOperaList().iterator();
 			while(itr.hasNext()){
 				Opera next = itr.next();
-				if(next.getStatus())
+				if(next.getStatus()){
 					listaOpera.addElement(next.getTitle());
+					count++;
+				}
 			}
 		}else{
 			Iterator<Opera> itr = data.getOperaList().iterator();
@@ -180,12 +184,12 @@ public class MainFrame extends JFrame {
 		/*  Autore  */
 		JLabel lblAutore = new JLabel("Autore:");
 		lblAutore.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblAutore.setBounds(260, 150, 46, 14);
+		lblAutore.setBounds(260, 151, 46, 14);
 		contentPane.add(lblAutore);
 		
 		JLabel autore = new JLabel("-");
 		autore.setFont(new Font("Tahoma", Font.BOLD, 11));
-		autore.setBounds(313, 150, 134, 14);
+		autore.setBounds(313, 151, 134, 14);
 		contentPane.add(autore);
 		
 		/*  N° Pagine  */
@@ -226,17 +230,46 @@ public class MainFrame extends JFrame {
 		
 		/*  -- Utente Base -- */
 		if(role == 0){
+			
+			/*  Status  */
 			JLabel lblStatus = new JLabel("Status:");
 			lblStatus.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			lblStatus.setBounds(260, 132, 46, 14);
-			lblStatus.setForeground(new Color(122, 124, 122));
 			contentPane.add(lblStatus);
 			
-			JLabel status = new JLabel("Access Denied");
+			JLabel status = new JLabel("-");
+			status.setFont(new Font("Tahoma", Font.BOLD, 11));
 			status.setBounds(313, 132, 134, 14);
-			status.setFont(new Font("Tahoma", Font.BOLD+Font.ITALIC, 11));
-			status.setForeground(new Color(122, 124, 122));
 			contentPane.add(status);
+			
+			if(count == 0){
+							
+				/*  Status  */
+				lblStatus.setForeground(new Color(122, 124, 122));					
+				status.setText("Access Denied");
+				status.setFont(new Font("Tahoma", Font.BOLD+Font.ITALIC, 11));
+				status.setForeground(new Color(122, 124, 122));
+				
+				/*  Autore  */
+				lblAutore.setForeground(new Color(122, 124, 122));					
+				autore.setText("Access Denied");
+				autore.setFont(new Font("Tahoma", Font.BOLD+Font.ITALIC, 11));
+				autore.setForeground(new Color(122, 124, 122));
+				
+				/*  N° Pagine  */
+				lblPagine.setForeground(new Color(122, 124, 122));			
+				pagine.setText("Access Denied");
+				pagine.setFont(new Font("Tahoma", Font.BOLD+Font.ITALIC, 11));
+				pagine.setForeground(new Color(122, 124, 122));
+				
+				JLabel noOperaExist = new JLabel("<html>Digitalizzazione dei manoscritti "
+						+ "in corso...</html>");
+				noOperaExist.setFont(new Font("Tahoma", Font.PLAIN+Font.ITALIC, 11));
+				noOperaExist.setBounds(278, 196, 150, 50);
+				contentPane.add(noOperaExist);
+			}
+			
+			
 			
 			/*  Operazioni concesse all'utente  */
 			JLabel lbOperation = new JLabel("Pannello Utente");
@@ -264,7 +297,7 @@ public class MainFrame extends JFrame {
 			username.setFont(new Font("Tahoma", Font.BOLD, 11));
 			contentPane.add(username);
 			
-			GestioneMouse act_base = new GestioneMouse( this.data, "MainFrame", list, autore, pagine, btnVisualizza, null);
+			GestioneMouse act_base = new GestioneMouse( this.data, "MainFrame", list, autore, pagine, btnVisualizza, status);
 			list.addMouseListener(act_base);
 
 		}
@@ -272,18 +305,48 @@ public class MainFrame extends JFrame {
 		
 		/* -- Utente Avanzato  -- */
 		if(role == 1){
+			
+			/*  Status  */
 			JLabel lblStatus = new JLabel("Status:");
 			lblStatus.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			lblStatus.setBounds(260, 132, 46, 14);
-			lblStatus.setForeground(new Color(122, 124, 122));
 			contentPane.add(lblStatus);
 			
-			JLabel status = new JLabel("Access Denied");
+			JLabel status = new JLabel("-");
+			status.setFont(new Font("Tahoma", Font.BOLD, 11));
 			status.setBounds(313, 132, 134, 14);
-			status.setFont(new Font("Tahoma", Font.BOLD+Font.ITALIC, 11));
-			status.setForeground(new Color(122, 124, 122));
 			contentPane.add(status);
 			
+			if(count == 0){
+							
+				/*  Status  */
+				lblStatus.setForeground(new Color(122, 124, 122));					
+				status.setText("Access Denied");
+				status.setFont(new Font("Tahoma", Font.BOLD+Font.ITALIC, 11));
+				status.setForeground(new Color(122, 124, 122));
+				
+				/*  Autore  */
+				lblAutore.setForeground(new Color(122, 124, 122));					
+				autore.setText("Access Denied");
+				autore.setFont(new Font("Tahoma", Font.BOLD+Font.ITALIC, 11));
+				autore.setForeground(new Color(122, 124, 122));
+				
+				/*  N° Pagine  */
+				lblPagine.setForeground(new Color(122, 124, 122));			
+				pagine.setText("Access Denied");
+				pagine.setFont(new Font("Tahoma", Font.BOLD+Font.ITALIC, 11));
+				pagine.setForeground(new Color(122, 124, 122));
+				
+				btnVisualizza.setVisible(false);
+				
+				JLabel noOperaExist = new JLabel("<html>Digitalizzazione dei manoscritti "
+						+ "in corso...</html>");
+				noOperaExist.setFont(new Font("Tahoma", Font.PLAIN+Font.ITALIC, 11));
+				noOperaExist.setBounds(278, 196, 150, 50);
+				contentPane.add(noOperaExist);
+			}
+			
+	
 			/*  Operazioni concesse all'utente  */
 			JLabel lbOperation = new JLabel("Operazioni Utente");
 			lbOperation.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -320,7 +383,7 @@ public class MainFrame extends JFrame {
 			UserRole.setFont(new Font("Tahoma", Font.BOLD, 11));
 			contentPane.add(UserRole);
 			
-			GestioneMouse act_advanced = new GestioneMouse( this.data, "MainFrame", list, autore, pagine, btnVisualizza, null);
+			GestioneMouse act_advanced = new GestioneMouse( this.data, "MainFrame", list, autore, pagine, btnVisualizza, status);
 			list.addMouseListener(act_advanced);
 		}
 		

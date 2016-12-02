@@ -62,7 +62,7 @@ public class CaricaFrame extends JFrame {
 		/* --  Contenitore immagine  -- */
 		JPanel panel_container = new JPanel();
 		panel_container.setBounds(15, 52, 526, 610);
-		panel_container.setSize(480, 540);
+		panel_container.setSize(480, 560);
 		panel_container.setLayout(null);
 		border_two = BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(240, 240, 240));
 		panel_container.setBorder(border_two);		
@@ -72,7 +72,7 @@ public class CaricaFrame extends JFrame {
 		JLabel lblImage = new JLabel("");
 		JScrollPane scroll = new JScrollPane(lblImage);
 		scroll.setBorder(border_two);	
-		scroll.setSize(480, 540);
+		scroll.setSize(480, 560);
 		panel_container.add(scroll);
 		image = ImageIO.read(new URL("http://frank.altervista.org/nopreview.jpg"));
 		ImageIcon imageIcon = new ImageIcon(image);

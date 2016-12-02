@@ -76,7 +76,7 @@ public class HistoryFrame extends JFrame {
 		
 		/* -- Tabella riassuntiva -- */
 		table_1 = new JTable();
-		table_1.setBounds(15, 30, 620, 210);
+		table_1.setBounds(15, 30, 620, 220);
 		table_1.setEnabled(false);
 		DefaultTableModel model = new DefaultTableModel(
 				new Object[][] {

@@ -95,39 +95,32 @@ public class GestioneAction extends AbstractAction implements Gestione {
 	 */
 	public void retrieveAll(){
 		
-		LinkedList<Opera> opere = data.getOperaList();
 		LinkedList<Action> actionList = data.getActionList();
 	    DefaultTableModel table = ((DefaultTableModel)object_2);
 		
-	    Iterator<Opera> itr_opere = opere.iterator();
 		Iterator<Action> itr_action = actionList.iterator();
-		
-		while(itr_opere.hasNext()){
-			Opera next_opera = itr_opere.next();
+
 			while(itr_action.hasNext()){
-				Action next = itr_action.next();				
+				Action next_action = itr_action.next();				
 				String type	= "";
 				String status = "";
 				
-				if(next.getOperaID() == next_opera.getId()){	
-						switch(next.getType()){
+						switch(next_action.getType()){
 							case 0  : type="Acquisizione"; break;
 							case 1  : type="Trascrizione"; break;
 							default : break;
 						}
 			
-						switch(next.getStatus()){
+						switch(next_action.getStatus()){
 							case 0  : status="Da Revisionare"; break;
 							case 1  : status="Accettato"; break;
 							case 2  : status="Rifiutato";break;
 							default : break;
 						}
 					
-						String report=""+next.getAction_report();
-						table.addRow(new Object[]{new User(next.getUserID()).getUsername(), new Opera(next.getOperaID()).getTitle(), next.getPage(), type, status, report});														
-				}
+						String report=""+next_action.getAction_report();
+						table.addRow(new Object[]{new User(next_action.getUserID()).getUsername(), new Opera(next_action.getOperaID()).getTitle(), next_action.getPage(), type, status, report});														
 			}
-		}
 	}
 	
 	/* ADD() - REMOVE() - EDIT() 
