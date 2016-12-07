@@ -615,7 +615,7 @@ public class GestionePagina extends AbstractAction implements Gestione  {
 				    xml = next.getText();
 					if(xml.length() > 0 ){
 						TransformerFactory fact = new net.sf.saxon.TransformerFactoryImpl();
-						Source xslt = new StreamSource(new File("TEI/html/html.xsl"));
+						Source xslt = new StreamSource(new File("Editor/Text_Conversion/html/html.xsl"));
 						Transformer transformer = fact.newTransformer(xslt);
 			        
 						StringWriter outWriter = new StringWriter();
