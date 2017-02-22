@@ -1,4 +1,4 @@
-package DigitaLibrary.Model;
+package DigitaLibrary.model;
 
 import java.util.ArrayList;
 import DigitaLibrary.DAO.UserDAO;
@@ -19,7 +19,10 @@ public class User {
 	private String email;
 	private int role;
 	
-	/* USER - Costruttore vuoto */
+	/* USER - Costruttori */
+	public User(){ }
+	
+
 	public User(int id, String uid, String pwd, String e, int r){
 		this.id       = id;
 		this.username = uid;
@@ -28,7 +31,7 @@ public class User {
 		this.role     = r;
 	}
 	
-	/* USER - Costruttore inizializzato dal DAO */
+	
 	public User(int id){
 		UserDAO DAO            = new UserDAO();
 		ArrayList<String> data = DAO.retrieve(id);

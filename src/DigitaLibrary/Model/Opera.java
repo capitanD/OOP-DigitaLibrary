@@ -1,4 +1,4 @@
-package DigitaLibrary.Model;
+package DigitaLibrary.model;
 
 import java.util.ArrayList;
 

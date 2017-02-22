@@ -7,7 +7,7 @@ import java.util.LinkedList;
 /* DAO --> Class ACTIONDAO
  * - No costruttore,
  * - retrieve(int) 	-> Dato un ID, implementa l'estrazione delle righe corrispondenti della tabella "Action",
- * - retrieveAll()	-> Implementa l'strazione di tutte le righe della tabella "Action" e le seleziona per ID,
+ * - retrieveAll()	-> Implementa l'estrazione di tutte le righe della tabella "Action" e le seleziona per ID,
  * - add(ArrayList<String>)			-> Aggiunge una nuova riga nella tabella "Action",
  * - edit(ArrayList<String>)		-> Implementa la modifica di una riga della tabella "Action",
  * - delete(int)	-> Dato un ID, implementa l'eliminazione di una riga specifica della tabella "Action".

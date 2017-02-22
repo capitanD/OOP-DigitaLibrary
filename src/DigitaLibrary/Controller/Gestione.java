@@ -1,4 +1,4 @@
-package DigitaLibrary.Controller;
+package DigitaLibrary.controller;
 
 /*  INTERFACCIA GESTIONE
  *  Classe interfaccia del controller che descrive quali metodi andremo 
@@ -7,8 +7,8 @@ package DigitaLibrary.Controller;
 
 public interface Gestione {
 	
-	public void add();
-	public void remove();
-	public void edit();
+	public boolean add();
+	public boolean remove();
+	public boolean edit();
 
 }

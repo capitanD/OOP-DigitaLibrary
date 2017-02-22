@@ -1,74 +1,49 @@
-package DigitaLibrary.Controller;
+package DigitaLibrary.controller;
 
-import java.awt.event.ActionEvent;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.ArrayList;
 
-import javax.swing.AbstractAction;
-import javax.swing.table.DefaultTableModel;
+import DigitaLibrary.model.Action;
+import DigitaLibrary.model.Biblioteca;
+import DigitaLibrary.model.User;
 
-import DigitaLibrary.Model.Action;
-import DigitaLibrary.Model.Biblioteca;
-import DigitaLibrary.Model.User;
-import DigitaLibrary.Model.Opera;
-import DigitaLibrary.View.CronologiaFrame;
-import DigitaLibrary.View.HistoryFrame;
 
 
 /*
  * CONTROLLER --> GESTIONE ACTION
  * La classe GestioneAction ci permette di gestire gli eventi generati dalla View, relativi a tutte le omponenti del nostro sistema.
- * - Costruttore,
- * - actionPerformed(ActionEvent) -> gestione eventi della View,
- * - retrieve() 			-> completamento della tabella di Cronologia Operazioni,
- * - retrieveAll()			-> completamento della tabella dello storico operazioni,
- * - add()/remove()/edit()	-> Non implementati per questa classe.
+ *
  */
 
 
-public class GestioneAction extends AbstractAction implements Gestione {
+public class GestioneAction implements Gestione {
 	
-	private static final long serialVersionUID = 3939558628081151887L;
 	private Biblioteca data;
 	private Object object_1;
-	private Object object_2;
+	
 	
 	/* -- Costruttore -- */
-	public GestioneAction(Biblioteca data, Object o, Object o2){
+	public GestioneAction(Biblioteca data, Object o1){
 		this.data 		= data;
-		this.object_1   = o;
-		this.object_2   = o2;
-	}
-	
-	
-	/* 	ACTIONPERFORMED(ActionEvent)
-	 * 	Gestione della cronologia operazioni effettuate nel nostro sistema.
-	 */
-	public void actionPerformed(ActionEvent e) {
-		
-		switch(e.getActionCommand()){
-			case "Cronologia Operazioni": 	CronologiaFrame cf = new CronologiaFrame(data, ((User)object_1));
-											cf.setVisible(true);
-											break;
-											
-			case "Storico Operazioni":		HistoryFrame h = new HistoryFrame(data);
-											h.setVisible(true);
-											break;
-			default:	break;
-		}
-	}
+		this.object_1   = o1;
 
+	}
+	
+	
 	
 	/* 	RETRIEVE()
 	 * 	Ottenere tutte le informazioni necessarie al completamento della tabella di "Cronologia Operazioni".
 	 */
-	public void retrieve() {
+	public LinkedList<ArrayList<String>> retrieve() {
 		User user    = ((User)object_1);
-	    DefaultTableModel table = ((DefaultTableModel)object_2);
+	    LinkedList<ArrayList<String>> table = new LinkedList<ArrayList<String>>();
+	    
 		LinkedList<Action> actionList = data.getActionList();
 		Iterator<Action> itr = actionList.iterator();
 		while(itr.hasNext()){
 			Action next = itr.next();
+			ArrayList<String> element = new ArrayList<String>();
 			if(next.getUserID() == user.getId()){
 				String type="";
 				switch(next.getType()){
@@ -84,53 +59,71 @@ public class GestioneAction extends AbstractAction implements Gestione {
 					default : break;
 				}
 				String report=""+next.getAction_report();
-				table.addRow(new Object[]{new User(next.getUserID()).getUsername(), new Opera(next.getOperaID()).getTitle(), next.getPage(), type, status, report});
+				element.add(Integer.toString(next.getUserID()));	//user ID
+				element.add(Integer.toString(next.getOperaID()));	//opera ID
+				element.add(Integer.toString(next.getPage()));		//page
+				element.add(type);
+				element.add(status);
+				element.add(report);
+				table.add(element);
 			}
 		}
+		return table;
 	}
+	
 	
 	
 	/* 	RETRIEVEALL()
 	 * 	Ottenere tutte le informazioni necessarie al completamento della tabella di "Cronologia Operazioni".
 	 */
-	public void retrieveAll(){
+	public LinkedList<ArrayList<String>> retrieveAll(){
 		
 		LinkedList<Action> actionList = data.getActionList();
-	    DefaultTableModel table = ((DefaultTableModel)object_2);
-		
+		LinkedList<ArrayList<String>> table = new LinkedList<ArrayList<String>>();
 		Iterator<Action> itr_action = actionList.iterator();
 
 			while(itr_action.hasNext()){
-				Action next_action = itr_action.next();				
+				Action nextAction = itr_action.next();				
 				String type	= "";
 				String status = "";
+				ArrayList<String> elementList = new ArrayList<String>();
 				
-						switch(next_action.getType()){
+						switch(nextAction.getType()){
 							case 0  : type="Acquisizione"; break;
 							case 1  : type="Trascrizione"; break;
 							default : break;
 						}
 			
-						switch(next_action.getStatus()){
+						switch(nextAction.getStatus()){
 							case 0  : status="Da Revisionare"; break;
 							case 1  : status="Accettato"; break;
 							case 2  : status="Rifiutato";break;
 							default : break;
 						}
 					
-						String report=""+next_action.getAction_report();
-						table.addRow(new Object[]{new User(next_action.getUserID()).getUsername(), new Opera(next_action.getOperaID()).getTitle(), next_action.getPage(), type, status, report});														
+						String report=""+nextAction.getAction_report();
+						elementList.add(Integer.toString(nextAction.getUserID()));	//user ID
+						elementList.add(Integer.toString(nextAction.getOperaID()));	//opera ID
+						elementList.add(Integer.toString(nextAction.getPage()));		//page
+						elementList.add(type);
+						elementList.add(status);
+						elementList.add(report);
+						table.add(elementList);
 			}
+			return table;
 	}
 	
 	/* ADD() - REMOVE() - EDIT() 
 	 * Metodi NON implementati per questa classe.
 	 */
-	public void add() {
+	public boolean add() {
+		return true;
 	}
-	public void remove() {
+	public boolean remove() {
+		return true;
 	}
-	public void edit() {
+	public boolean edit() {
+		return true;
 	}
 	
 }
